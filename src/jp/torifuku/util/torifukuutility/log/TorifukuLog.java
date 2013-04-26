@@ -10,13 +10,16 @@ import android.util.Log;
  * 
  * output log.
  * 
- * <How to use> 1. Please call
- * jp.torifuku.util.torifukuutility.log.TorifukuLog.setDebugable(Context) or
- * setDebugable(Context, boolean) first at android.app.Activity.onCreate(Bundle). This is
- * only once. 2. Please call at method Entrance.
- * jp.torifuku.util.torifukuutility.log.TorifukuLog.methodIn() 3. method tail at
- * method Exit. jp.torifuku.util.torifukuutility.log.TorifukuLog.methodOut() You
- * do not need to write Tag & msg.
+ * <How to use><br>
+ * 1. Please call
+ * jp.torifuku.util.torifukuutility.log.TorifukuLog.setDebugable(Context) or<br>
+ * setDebugable(Context, boolean) first at android.app.Activity.onCreate(Bundle).<br>
+ * This is only once.<br>
+ * 2. Please call at method Entrance.<br>
+ * jp.torifuku.util.torifukuutility.log.TorifukuLog.methodIn()<br>
+ * 3. Please call at method Exit.
+ * jp.torifuku.util.torifukuutility.log.TorifukuLog.methodOut()<br>
+ * You do not need to write Tag & msg!!!
  * 
  * @author torifuku.kaiou@gmail.com
  * 
@@ -52,14 +55,15 @@ public class TorifukuLog {
 	 * setDebugable
 	 * 
 	 * @param context
-	 * @param on if true output log
+	 * @param on
+	 *            if true output log
 	 */
 	static public void setDebugable(Context context, boolean on) {
 		TorifukuLog.sDebugable = on;
 		if (context == null) {
 			return;
 		}
-		
+
 		ApplicationInfo appInfo = context.getApplicationInfo();
 		if (appInfo == null) {
 			return;
@@ -103,24 +107,28 @@ public class TorifukuLog {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
+		// TODO
 	}
 
 	static public void e(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
+		// TODO
 	}
 
 	static public void i(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
+		// TODO
 	}
 
 	static public void w(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
+		// TODO
 	}
 
 	static private String[] createMethodInfo() {
