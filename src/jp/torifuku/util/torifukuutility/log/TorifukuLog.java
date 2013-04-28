@@ -104,6 +104,9 @@ public class TorifukuLog {
 		Log.d(sTag, info[0] + " In: " + info[1]);
 	}
 
+	/**
+	 * methodOut
+	 */
 	static public void methodOut() {
 		if (!TorifukuLog.sDebugable) {
 			return;
