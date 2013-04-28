@@ -12,8 +12,9 @@ import android.util.Log;
  * 
  * <How to use><br>
  * 1. Please call
- * jp.torifuku.util.torifukuutility.log.TorifukuLog.setDebugable(Context) or<br>
- * setDebugable(Context, boolean) first at android.app.Activity.onCreate(Bundle).<br>
+ * jp.torifuku.util.torifukuutility.log.TorifukuLog.init(Context) or<br>
+ * init(Context, boolean) or<br>
+ * init(Context, boolean, String) first at android.app.Activity.onCreate(Bundle).<br>
  * This is only once.<br>
  * 2. Please call at method Entrance.<br>
  * jp.torifuku.util.torifukuutility.log.TorifukuLog.methodIn()<br>
@@ -29,11 +30,11 @@ public class TorifukuLog {
 	static private String sTag = "XXXX";
 
 	/**
-	 * setDebugable
+	 * init
 	 * 
 	 * Set manifest debuggable
 	 */
-	static public void setDebugable(Context context) {
+	static public void init(Context context) {
 		if (context == null) {
 			return;
 		}
@@ -48,18 +49,18 @@ public class TorifukuLog {
 		} else {
 			debuggable = false;
 		}
-		TorifukuLog.setDebugable(context, debuggable);
+		TorifukuLog.init(context, debuggable);
 	}
 
 	/**
-	 * setDebugable
+	 * init
 	 * 
 	 * @param context
-	 * @param on
+	 * @param debuggable
 	 *            if true output log
 	 */
-	static public void setDebugable(Context context, boolean on) {
-		TorifukuLog.sDebugable = on;
+	static public void init(Context context, boolean debuggable) {
+		TorifukuLog.sDebugable = debuggable;
 		if (context == null) {
 			return;
 		}
@@ -70,6 +71,20 @@ public class TorifukuLog {
 		}
 		PackageManager pm = context.getPackageManager();
 		TorifukuLog.sTag = pm.getApplicationLabel(appInfo).toString();
+	}
+	
+	/**
+	 * init
+	 * 
+	 * @param context
+	 * @param on
+	 * @param tag
+	 */
+	static public void init(Context context, boolean debuggable, String tag) {
+		TorifukuLog.init(context, debuggable);
+		if (tag != null) {
+			TorifukuLog.sTag = tag;
+		}
 	}
 
 	/**
@@ -103,32 +118,76 @@ public class TorifukuLog {
 		Log.d(sTag, info[0] + " Out: " + info[1]);
 	}
 
+	/**
+	 * d
+	 * @param msg
+	 */
 	static public void d(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.d(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * e
+	 * @param msg
+	 */
 	static public void e(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.e(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * i
+	 * @param msg
+	 */
 	static public void i(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.i(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * w
+	 * @param msg
+	 */
 	static public void w(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.w(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
 	static private String[] createMethodInfo() {
