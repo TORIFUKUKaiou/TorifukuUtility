@@ -118,32 +118,76 @@ public class TorifukuLog {
 		Log.d(sTag, info[0] + " Out: " + info[1]);
 	}
 
+	/**
+	 * d
+	 * @param msg
+	 */
 	static public void d(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.d(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * e
+	 * @param msg
+	 */
 	static public void e(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.e(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * i
+	 * @param msg
+	 */
 	static public void i(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.i(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
+	/**
+	 * w
+	 * @param msg
+	 */
 	static public void w(String msg) {
 		if (!TorifukuLog.sDebugable) {
 			return;
 		}
-		// TODO
+		String[] info = TorifukuLog.createMethodInfo();
+		if (info == null) {
+			return;
+		}
+		if (info.length < 2) {
+			return;
+		}
+		Log.w(TorifukuLog.sTag, msg + "[" + info[1] + "]");
 	}
 
 	static private String[] createMethodInfo() {
