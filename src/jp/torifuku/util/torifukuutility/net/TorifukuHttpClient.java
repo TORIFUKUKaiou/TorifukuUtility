@@ -155,11 +155,11 @@ public class TorifukuHttpClient {
 				int status = response.getStatusLine().getStatusCode();
 				if (status == HttpStatus.SC_OK) {
 					if (isGzipEnabled(response)) {
-						//Log.i("TEST", "gzip!!!");
+						//android.util.Log.i("TEST", "gzip!!!");
 						inputStream = new GZIPInputStream(response.getEntity().getContent());
 					} else {
 						inputStream = response.getEntity().getContent();
-						//Log.e("TEST", "not gzip...");
+						//android.util.Log.e("TEST", "not gzip...");
 					}
 					// android developers may convert InputStream to Bitmap.
 					// android.graphics.BitmapFactory.decodeStream(InputStream, Rect, BitmapFactory.Options);
